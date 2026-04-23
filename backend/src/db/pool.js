@@ -1,16 +1,18 @@
 // src/db/pool.js — Conexão PostgreSQL (Supabase)
-require('dotenv').config({ path: require('path').join(__dirname, '../../.env') });
 const { Pool } = require('pg');
 
-const connectionString = process.env.DATABASE_URL ||
-  'postgresql://postgres:03QE4G41%25Z5%3F!m%3FPc@db.yolqujxuncevfajdxgga.supabase.co:5432/postgres';
-
 const pool = new Pool({
-  connectionString,
-  ssl: { rejectUnauthorized: false }, // Obrigatório no Supabase
-  max: 10,
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 5000,
+  host:     'db.yolqujxuncevfajdxgga.supabase.co',
+  port:     5432,
+  database: 'postgres',
+  user:     'postgres',
+  password: '03QE4G41%Z5?!m?Pc',
+  ssl:      { rejectUnauthorized: false },
+  max:      10,
+  idleTimeoutMillis:    30000,
+  connectionTimeoutMillis: 10000,
+  // Forçar IPv4
+  family:   4,
 });
 
 pool.on('connect', () => {
