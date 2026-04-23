@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: shinobi-no-sekai
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install
+    startCommand: node src/index.js
+    envVars:
+      - key: DATABASE_URL
+        value: postgresql://postgres:03QE4G41%Z5?!m?Pc@db.yolqujxuncevfajdxgga.supabase.co:5432/postgres
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: RULES_SYNC_INTERVAL
+        value: 6
+      # Adicione manualmente no painel do Render:
+      # DISCORD_TOKEN
+      # DISCORD_CLIENT_ID
+      # DISCORD_GUILD_ID
+      # DISCORD_ACADEMIA_CATEGORY_ID
+      # DISCORD_LOG_CHANNEL_ID
+      # PORTAL_URL
+      # API_BASE_URL
