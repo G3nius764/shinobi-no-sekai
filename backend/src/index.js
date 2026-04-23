@@ -50,13 +50,11 @@ async function main() {
   console.log('╚══════════════════════════════════════════╝');
 
   // Verificar variáveis obrigatórias
-  const required = ['DISCORD_TOKEN','DISCORD_CLIENT_ID','DISCORD_GUILD_ID',
-                    'DB_NAME','DB_USER','JWT_SECRET'];
+  const required = ['DISCORD_TOKEN','DISCORD_CLIENT_ID','DISCORD_GUILD_ID','JWT_SECRET'];
   const missing = required.filter(k => !process.env[k]);
   if (missing.length) {
-    console.error('\n❌ Variáveis de ambiente faltando:', missing.join(', '));
-    console.error('   Copie .env.example para .env e preencha os valores!\n');
-    process.exit(1);
+    console.warn('\n⚠️  Variáveis faltando:', missing.join(', '));
+    console.warn('   Bot Discord pode não funcionar corretamente.\n');
   }
 
   // Iniciar API REST
